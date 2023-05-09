@@ -1,0 +1,13 @@
+#CardActivity {
+  background: #ffffff;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  width: 150px;
+  height: 150px;
+  padding: 13px 20px 17px 17px;
+  @screen xmd {
+    width: 235px;
+    height: 234px;
+    padding: 22px 22px 25px 27px;
+  }
+}
