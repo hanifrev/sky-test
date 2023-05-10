@@ -5,9 +5,11 @@ import Image from "next/image";
 import { createActivity, getAllActivity, removeActivity } from "../utils/api";
 import ActivityHeader from "./ActivityHeader";
 import CardActivity from "./CardActivity";
+import DeletedToast from "./DeletedToast";
 
 const ActivityList = () => {
   const [data, setData] = useState([]);
+  const [toast, setToast] = useState(false);
 
   const getActivity = async () => {
     const theData = await getAllActivity();
@@ -29,6 +31,19 @@ const ActivityList = () => {
   };
 
   console.log(data);
+
+  const theToast = () => {
+    setToast(true);
+  };
+
+  useEffect(() => {
+    if (toast) {
+      const timeoutId = setTimeout(() => {
+        setToast(false);
+      }, 4000);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [toast]);
 
   return (
     <div>
@@ -52,10 +67,17 @@ const ActivityList = () => {
       ) : (
         <div className="flex flex-wrap gap-5 justify-between sm:justify-start">
           {data.map((item) => {
-            return <CardActivity data={item} onDelete={onDeleteActivity} />;
+            return (
+              <CardActivity
+                data={item}
+                onDelete={onDeleteActivity}
+                toastDelete={theToast}
+              />
+            );
           })}
         </div>
       )}
+      {toast && <DeletedToast closeToast={() => setToast(false)} />}
     </div>
   );
 };

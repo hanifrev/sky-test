@@ -2,9 +2,9 @@ import React from "react";
 import icon from "../assets/modal-information-icon.svg";
 import Image from "next/image";
 
-const DeletedToast = () => {
+const DeletedToast = ({ closeToast }) => {
   return (
-    <div id="toastOverlay">
+    <div id="toastOverlay" onClick={closeToast}>
       <div
         id="deletedToast"
         data-cy="modal-information"

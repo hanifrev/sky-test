@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HiOutlineTrash } from "react-icons/hi";
 import Modal from "./Modal";
 import DeletedToast from "./DeletedToast";
 
-const CardActivity = ({ data, onDelete }) => {
+const CardActivity = ({ data, onDelete, toastDelete }) => {
   const [openModal, setOpenModal] = useState(false);
   const [toast, setToast] = useState(false);
 
@@ -14,8 +14,17 @@ const CardActivity = ({ data, onDelete }) => {
   const handleDelete = () => {
     onDelete(data.id);
     setOpenModal(false);
-    setToast(true);
+    toastDelete(true);
   };
+
+  useEffect(() => {
+    if (toast) {
+      const timeoutId = setTimeout(() => {
+        setToast(false);
+      }, 4000);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [toast]);
 
   return (
     <>
@@ -59,7 +68,7 @@ const CardActivity = ({ data, onDelete }) => {
           onDeleteActivity={handleDelete}
         />
       )}
-      {toast && <DeletedToast />}
+      {/* {toast && <DeletedToast />} */}
     </>
   );
 };
