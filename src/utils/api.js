@@ -40,4 +40,34 @@ const removeActivity = async (id) => {
   }
 };
 
-export { getAllActivity, createActivity, removeActivity };
+const getOneActivity = async (id) => {
+  try {
+    const res = await axios.get(`${BASE_URL}/activity-groups/${id}`);
+    const data = await res.data;
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+const getTodoList = async (id) => {
+  try {
+    const res = await axios.get(
+      `${BASE_URL}/todo-items/?activity_group_id=${id}`
+    );
+    const data = await res.data.data;
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+export {
+  getAllActivity,
+  createActivity,
+  removeActivity,
+  getOneActivity,
+  getTodoList,
+};

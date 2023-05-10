@@ -1,0 +1,18 @@
+#todoHeader {
+  .add-btn {
+    background: #16abf8;
+    border-radius: 45px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 13px 14px;
+    gap: 6px;
+    width: 100px;
+    height: 37px;
+    @screen xmd {
+      width: 159px;
+      height: 54px;
+    }
+  }
+}
