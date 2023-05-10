@@ -21,10 +21,6 @@ const TodoHeader = ({ theData, theTitle, theId }) => {
     updateActivity(updatedValue, theId);
   };
 
-  // useEffect(() => {
-  //   handleInputChange;
-  // }, [value]);
-
   const handleInputBlur = () => {
     setIsEditing(false);
   };

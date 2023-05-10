@@ -1,0 +1,23 @@
+#todoListCard {
+  background: #ffffff;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  height: 56px;
+  width: 100%;
+  @screen xmd {
+    height: 80px;
+  }
+
+  input[type="checkbox"] {
+    accent-color: #ffffff;
+  }
+
+  .check {
+    width: 12px;
+    height: 12px;
+    @screen xmd {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}

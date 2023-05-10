@@ -1,12 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import { getOneActivity, getTodoList } from "../../utils/api";
 import TodoHeader from "../../components/TodoHeader";
+import TodoListCard from "../../components/TodoListCard";
+import emptyMobile from "../../assets/todo-empty-mobile.svg";
+import emptyDesktop from "../../assets/todo-empty-desktop.svg";
+import Image from "next/image";
 
 const Detail = ({ theData, theTitle, params }) => {
+  const [data, setData] = useState([1]);
   // console.log(params);
   return (
     <div>
       <TodoHeader theTitle={theTitle} theId={params} />
+      {data <= 0 ? (
+        <div data-cy="todo-empty-state">
+          <Image
+            src={emptyMobile}
+            className="block xmd:hidden mx-auto pt-[140px]"
+            // onClick={postActivity}
+          />
+          <div className="mx-auto block xmd:hidden text-base font-bold text-[#555555] pt-[35px] text-center">
+            Buat List Item pertamamu
+          </div>
+          <Image
+            src={emptyDesktop}
+            className="hidden xmd:block pt-[59px] mx-auto"
+            // onClick={postActivity}
+          />
+        </div>
+      ) : (
+        <div className="flex gap-2 xmd:gap-[10px] pt-[28px] xmd:pt-12">
+          <TodoListCard />
+        </div>
+      )}
     </div>
   );
 };

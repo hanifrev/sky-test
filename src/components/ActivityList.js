@@ -60,7 +60,7 @@ const ActivityList = () => {
           </div>
           <Image
             src={emptyDesktop}
-            className="hidden xmd:block pt-[59px]"
+            className="hidden xmd:block mx-auto pt-[59px]"
             onClick={postActivity}
           />
         </div>
