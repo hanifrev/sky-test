@@ -1,0 +1,28 @@
+#toastOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+}
+
+#deletedToast {
+  position: absolute;
+  margin: auto;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  width: 323px;
+  height: 58px;
+  background: #ffffff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  z-index: 9999;
+  @screen xmd {
+    width: 490px;
+    height: 58px;
+  }
+}

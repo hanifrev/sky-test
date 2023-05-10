@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import emptyMobile from "../assets/empty-mobile.svg";
 import emptyDesktop from "../assets/empty-desktop.svg";
 import Image from "next/image";
-import { createActivity, getAllActivity } from "../utils/api";
+import { createActivity, getAllActivity, removeActivity } from "../utils/api";
 import ActivityHeader from "./ActivityHeader";
 import CardActivity from "./CardActivity";
 
@@ -23,6 +23,11 @@ const ActivityList = () => {
     getActivity();
   }, []);
 
+  const onDeleteActivity = async (id) => {
+    await removeActivity(id);
+    getActivity();
+  };
+
   console.log(data);
 
   return (
@@ -33,7 +38,7 @@ const ActivityList = () => {
           <Image
             src={emptyMobile}
             className="block xmd:hidden mx-auto pt-[140px]"
-            onClick={() => alert("test")}
+            onClick={postActivity}
           />
           <div className="mx-auto block xmd:hidden text-base font-bold text-[#555555] pt-[35px] text-center">
             Buat activity pertamamu
@@ -47,7 +52,7 @@ const ActivityList = () => {
       ) : (
         <div className="flex flex-wrap gap-5 justify-between sm:justify-start">
           {data.map((item) => {
-            return <CardActivity data={item} />;
+            return <CardActivity data={item} onDelete={onDeleteActivity} />;
           })}
         </div>
       )}

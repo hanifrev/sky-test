@@ -29,4 +29,15 @@ const createActivity = async (title, email) => {
   }
 };
 
-export { getAllActivity, createActivity };
+const removeActivity = async (id) => {
+  try {
+    const res = await axios.delete(`${BASE_URL}/activity-groups/${id}`);
+    const data = await res.data.data;
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+export { getAllActivity, createActivity, removeActivity };
