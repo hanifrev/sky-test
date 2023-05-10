@@ -40,6 +40,19 @@ const removeActivity = async (id) => {
   }
 };
 
+const updateActivity = async (title, id) => {
+  try {
+    const res = await axios.patch(`${BASE_URL}/activity-groups/${id}`, {
+      title,
+    });
+    const data = await res.data.data;
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
 const getOneActivity = async (id) => {
   try {
     const res = await axios.get(`${BASE_URL}/activity-groups/${id}`);
@@ -68,6 +81,7 @@ export {
   getAllActivity,
   createActivity,
   removeActivity,
+  updateActivity,
   getOneActivity,
   getTodoList,
 };

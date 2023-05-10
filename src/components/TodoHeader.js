@@ -5,8 +5,9 @@ import sortBtn from "../assets/sort-button.svg";
 import Image from "next/image";
 import Link from "next/link";
 import { FaPlus } from "react-icons/fa";
+import { updateActivity } from "../utils/api";
 
-const TodoHeader = ({ theData, theTitle }) => {
+const TodoHeader = ({ theData, theTitle, theId }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [value, setValue] = useState(theTitle);
 
@@ -15,8 +16,14 @@ const TodoHeader = ({ theData, theTitle }) => {
   };
 
   const handleInputChange = (e) => {
-    setValue(e.target.value);
+    const updatedValue = e.target.value;
+    setValue(updatedValue);
+    updateActivity(updatedValue, theId);
   };
+
+  // useEffect(() => {
+  //   handleInputChange;
+  // }, [value]);
 
   const handleInputBlur = () => {
     setIsEditing(false);
