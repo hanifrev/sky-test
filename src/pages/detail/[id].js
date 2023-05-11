@@ -29,7 +29,8 @@ const Detail = ({ theData, theTitle, params }) => {
           />
         </div>
       ) : (
-        <div className="flex gap-2 xmd:gap-[10px] pt-[28px] xmd:pt-12">
+        <div className="flex flex-col gap-2 xmd:gap-[10px] pt-[28px] xmd:pt-12">
+          <TodoListCard />
           <TodoListCard />
         </div>
       )}

@@ -6,10 +6,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaPlus } from "react-icons/fa";
 import { updateActivity } from "../utils/api";
+import TodoAddModal from "./TodoAddModal";
 
 const TodoHeader = ({ theData, theTitle, theId }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [value, setValue] = useState(theTitle);
+  const [openModal, setOpenModal] = useState(true);
 
   const handleTitleClick = () => {
     setIsEditing(true);
@@ -83,6 +85,7 @@ const TodoHeader = ({ theData, theTitle, theId }) => {
           <span className="text-xs xmd:text-lg">Tambah</span>
         </button>
       </div>
+      {openModal && <TodoAddModal />}
     </div>
   );
 };
