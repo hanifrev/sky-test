@@ -7,11 +7,13 @@ import Link from "next/link";
 import { FaPlus } from "react-icons/fa";
 import { updateActivity } from "../utils/api";
 import TodoAddModal from "./TodoAddModal";
+import SortDropdown from "./SortDropdown";
 
 const TodoHeader = ({ theData, theTitle, theId, reFetch }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [value, setValue] = useState(theTitle);
   const [openModal, setOpenModal] = useState(false);
+  const [openSort, setOpenSort] = useState(false);
 
   const handleTitleClick = () => {
     setIsEditing(true);
@@ -29,6 +31,10 @@ const TodoHeader = ({ theData, theTitle, theId, reFetch }) => {
 
   const handleModal = () => {
     setOpenModal(true);
+  };
+
+  const handleSortModal = () => {
+    setOpenSort(!openSort);
   };
 
   const propModal = () => {
@@ -82,7 +88,7 @@ const TodoHeader = ({ theData, theTitle, theId, reFetch }) => {
       </div>
       <div className="flex justify-end pt-8 gap-2 xmd:pt-0 xmd:gap-[18px]">
         {/* if data available, sort = true */}
-        <div data-cy="todo-sort-button">
+        <div data-cy="todo-sort-button" onClick={handleSortModal}>
           <Image src={sortBtn} className="xmd:w-[54px]" />
         </div>
         <button
@@ -94,6 +100,7 @@ const TodoHeader = ({ theData, theTitle, theId, reFetch }) => {
           <span className="text-xs xmd:text-lg">Tambah</span>
         </button>
       </div>
+      {openSort && <SortDropdown />}
       {openModal && (
         <TodoAddModal
           idParams={theId}
