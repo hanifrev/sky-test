@@ -4,9 +4,12 @@ import Image from "next/image";
 import { HiOutlineTrash } from "react-icons/hi";
 import { deleteTodo, updateTodoChecked } from "../utils/api";
 import ModalTodo from "./ModalTodo";
+import TodoAddModal from "./TodoAddModal";
+import TodoEditModal from "./TodoEditModal";
 
 const TodoListCard = ({ title, todoid, priority, reFetch, is_active }) => {
   const [openModal, setOpenModal] = useState(false);
+  const [modalEdit, setModalEdit] = useState(false);
   const [priorityColor, setPriorityColor] = useState("");
   const [isChecked, setIsChecked] = useState(false);
 
@@ -18,14 +21,6 @@ const TodoListCard = ({ title, todoid, priority, reFetch, is_active }) => {
   };
 
   useEffect(() => {
-    // if (is_active !== 1) {
-    //   is_active == 0 ? setIsChecked(false) : setIsChecked(true);
-    // }
-    // if (is_active == 0) {
-    //   setIsChecked(false);
-    // } else {
-    //   setIsChecked(true);
-    // }
     if (is_active !== undefined) {
       setIsChecked(is_active === 0 ? true : false);
     }
@@ -54,6 +49,10 @@ const TodoListCard = ({ title, todoid, priority, reFetch, is_active }) => {
       setPriorityColor("#8942C1");
     }
   }, [reFetch]);
+
+  const handleEdit = () => {
+    setModalEdit(true);
+  };
 
   return (
     <div
@@ -85,7 +84,11 @@ const TodoListCard = ({ title, todoid, priority, reFetch, is_active }) => {
         >
           {title}
         </div>
-        <div data-cy="todo-item-edit-button" className="flex items-center">
+        <div
+          data-cy="todo-item-edit-button"
+          className="flex items-center cursor-pointer"
+          onClick={handleEdit}
+        >
           <Image src={pencil} className="w-4 xmd:w-[24px] " />
         </div>
       </div>
@@ -101,6 +104,15 @@ const TodoListCard = ({ title, todoid, priority, reFetch, is_active }) => {
           data={title}
           onClose={() => setOpenModal(false)}
           onDeleteActivity={handleDelete}
+        />
+      )}
+      {modalEdit && (
+        <TodoEditModal
+          onClose={() => setModalEdit(false)}
+          titleEdit={title}
+          priorityEdit={priority}
+          idParams={todoid}
+          onTodoEdited={reFetch}
         />
       )}
     </div>
