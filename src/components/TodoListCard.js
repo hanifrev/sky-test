@@ -1,19 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import pencil from "../assets/pencil.svg";
 import Image from "next/image";
 import { HiOutlineTrash } from "react-icons/hi";
-import { deleteTodo } from "../utils/api";
+import { deleteTodo, updateTodoChecked } from "../utils/api";
 import ModalTodo from "./ModalTodo";
 
-const TodoListCard = ({ title, todoid, reFetch }) => {
+const TodoListCard = ({ title, todoid, priority, reFetch, is_active }) => {
   const [openModal, setOpenModal] = useState(false);
+  const [priorityColor, setPriorityColor] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
 
-  const circleStyle = {
-    width: "9px",
-    height: "9px",
-    borderRadius: "50%",
-    backgroundColor: "#FF0000",
+  const handleCheckboxChange = async () => {
+    const updatedValue = isChecked ? 0 : 1;
+    await updateTodoChecked(todoid, updatedValue);
+    reFetch();
+    setIsChecked((prevState) => !prevState);
   };
+
+  useEffect(() => {
+    // if (is_active !== 1) {
+    //   is_active == 0 ? setIsChecked(false) : setIsChecked(true);
+    // }
+    // if (is_active == 0) {
+    //   setIsChecked(false);
+    // } else {
+    //   setIsChecked(true);
+    // }
+    if (is_active !== undefined) {
+      setIsChecked(is_active === 0 ? true : false);
+    }
+  }, [is_active]);
 
   const openDeleteModal = () => {
     setOpenModal(true);
@@ -25,6 +41,20 @@ const TodoListCard = ({ title, todoid, reFetch }) => {
     reFetch();
   };
 
+  useEffect(() => {
+    if (priority == "very-high") {
+      setPriorityColor("#ED4C5C");
+    } else if (priority == "high") {
+      setPriorityColor("#F8A541");
+    } else if (priority == "normal") {
+      setPriorityColor("#00A790");
+    } else if (priority == "low") {
+      setPriorityColor("#428BC1");
+    } else {
+      setPriorityColor("#8942C1");
+    }
+  }, [reFetch]);
+
   return (
     <div
       data-cy="todo-item"
@@ -35,22 +65,25 @@ const TodoListCard = ({ title, todoid, reFetch }) => {
         <div className="flex items-center">
           <input
             type="checkbox"
-            // checked={todo.completed}
-            // onChange={() => handleCheckbox(todo.id)}
+            checked={isChecked}
+            onChange={handleCheckboxChange}
             className="check"
             data-cy="todo-item-checkbox"
           />
         </div>
         <div
-          className="mx-[14px] flex items-center"
+          className={`mx-[14px] flex items-center w-[9px] h-[9px] rounded-[50%] `}
           data-cy="todo-item-priority-indicator"
-          style={circleStyle}
+          style={{ backgroundColor: priorityColor }}
         ></div>
         <div
-          className="font-medium text-sm xmd:text-lg pr-2 xmd:pr-4"
+          className={`font-medium text-sm xmd:text-lg pr-2 xmd:pr-4 ${
+            isChecked ? "text-[#888888]" : "text-black"
+          }`}
           data-cy="todo-item-title"
+          style={{ textDecoration: isChecked ? "line-through" : "none" }}
         >
-          {title} {todoid}
+          {title}
         </div>
         <div data-cy="todo-item-edit-button" className="flex items-center">
           <Image src={pencil} className="w-4 xmd:w-[24px] " />

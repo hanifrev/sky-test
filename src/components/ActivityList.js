@@ -65,7 +65,7 @@ const ActivityList = () => {
           />
         </div>
       ) : (
-        <div className="flex flex-wrap gap-5 justify-between sm:justify-start">
+        <div className="flex flex-wrap gap-5 justify-between sm:justify-start mt-9 xmd:mt-12">
           {data.map((item) => {
             return (
               <CardActivity

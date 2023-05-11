@@ -31,6 +31,11 @@ const TodoHeader = ({ theData, theTitle, theId, reFetch }) => {
     setOpenModal(true);
   };
 
+  const propModal = () => {
+    setOpenModal(true);
+    return propModal;
+  };
+
   return (
     <div
       id="todoHeader"

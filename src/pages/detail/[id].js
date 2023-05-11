@@ -8,7 +8,6 @@ import Image from "next/image";
 
 const Detail = ({ theData, theTitle, params }) => {
   const [data, setData] = useState(theData);
-  const [openAddModal, setOpenAddModal] = useState();
 
   const getTodoItem = async () => {
     const response = await getTodoList(params);
@@ -43,7 +42,7 @@ const Detail = ({ theData, theTitle, params }) => {
           <Image
             src={emptyDesktop}
             className="hidden xmd:block pt-[59px] mx-auto"
-            // onClick={postActivity}
+            // onClick={handleOpenModal}
           />
         </div>
       ) : (
@@ -53,7 +52,9 @@ const Detail = ({ theData, theTitle, params }) => {
               <TodoListCard
                 title={item.title}
                 todoid={item.id}
+                priority={item.priority}
                 reFetch={getTodoItem}
+                is_active={item.is_active}
               />
             );
           })}

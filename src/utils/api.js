@@ -103,6 +103,33 @@ const deleteTodo = async (id) => {
   }
 };
 
+const updateTodoTitlePriority = async (id, title, priority) => {
+  try {
+    const res = await axios.patch(`${BASE_URL}/todo-items/${id}`, {
+      title,
+      priority,
+    });
+    const data = await res.data.data;
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+const updateTodoChecked = async (id, is_active) => {
+  try {
+    const res = await axios.patch(`${BASE_URL}/todo-items/${id}`, {
+      is_active,
+    });
+    const data = await res.data.data;
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
 export {
   getAllActivity,
   createActivity,
@@ -112,4 +139,6 @@ export {
   getTodoList,
   addTodo,
   deleteTodo,
+  updateTodoTitlePriority,
+  updateTodoChecked,
 };

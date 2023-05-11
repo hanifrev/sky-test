@@ -20,7 +20,7 @@ const CardActivity = ({ data, onDelete, toastDelete }) => {
     <>
       <div
         id="CardActivity"
-        className="flex flex-col justify-between mt-9 xmd:mt-12 cursor-pointer"
+        className="flex flex-col justify-between cursor-pointer"
         data-cy="activity-item"
         key={data.id}
       >
