@@ -8,10 +8,10 @@ import { FaPlus } from "react-icons/fa";
 import { updateActivity } from "../utils/api";
 import TodoAddModal from "./TodoAddModal";
 
-const TodoHeader = ({ theData, theTitle, theId }) => {
+const TodoHeader = ({ theData, theTitle, theId, reFetch }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [value, setValue] = useState(theTitle);
-  const [openModal, setOpenModal] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
 
   const handleTitleClick = () => {
     setIsEditing(true);
@@ -25,6 +25,10 @@ const TodoHeader = ({ theData, theTitle, theId }) => {
 
   const handleInputBlur = () => {
     setIsEditing(false);
+  };
+
+  const handleModal = () => {
+    setOpenModal(true);
   };
 
   return (
@@ -79,13 +83,19 @@ const TodoHeader = ({ theData, theTitle, theId }) => {
         <button
           className="add-btn  text-white"
           data-cy="activity-add-button"
-          //   onClick={addActivity}
+          onClick={handleModal}
         >
           <FaPlus />
           <span className="text-xs xmd:text-lg">Tambah</span>
         </button>
       </div>
-      {openModal && <TodoAddModal />}
+      {openModal && (
+        <TodoAddModal
+          idParams={theId}
+          onClose={() => setOpenModal(false)}
+          onTodoAdded={reFetch}
+        />
+      )}
     </div>
   );
 };

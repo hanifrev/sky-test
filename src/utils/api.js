@@ -77,6 +77,21 @@ const getTodoList = async (id) => {
   }
 };
 
+const addTodo = async (activity_group_id, title, priority) => {
+  try {
+    const res = await axios.post(`${BASE_URL}/todo-items`, {
+      activity_group_id,
+      title,
+      priority,
+    });
+    const data = await res.data.data;
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
 export {
   getAllActivity,
   createActivity,
@@ -84,4 +99,5 @@ export {
   updateActivity,
   getOneActivity,
   getTodoList,
+  addTodo,
 };

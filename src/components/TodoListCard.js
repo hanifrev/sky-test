@@ -3,7 +3,7 @@ import pencil from "../assets/pencil.svg";
 import Image from "next/image";
 import { HiOutlineTrash } from "react-icons/hi";
 
-const TodoListCard = () => {
+const TodoListCard = ({ title }) => {
   const circleStyle = {
     width: "9px",
     height: "9px",
@@ -36,7 +36,7 @@ const TodoListCard = () => {
           className="font-medium text-sm xmd:text-lg pr-2 xmd:pr-4"
           data-cy="todo-item-title"
         >
-          todo
+          {title}
         </div>
         <div data-cy="todo-item-edit-button" className="flex items-center">
           <Image src={pencil} className="w-4 xmd:w-[24px] " />

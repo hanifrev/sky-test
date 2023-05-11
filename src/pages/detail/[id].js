@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getOneActivity, getTodoList } from "../../utils/api";
 import TodoHeader from "../../components/TodoHeader";
 import TodoListCard from "../../components/TodoListCard";
@@ -7,11 +7,29 @@ import emptyDesktop from "../../assets/todo-empty-desktop.svg";
 import Image from "next/image";
 
 const Detail = ({ theData, theTitle, params }) => {
-  const [data, setData] = useState([1]);
-  console.log(theData);
+  const [data, setData] = useState(theData);
+  const [openAddModal, setOpenAddModal] = useState();
+
+  const getTodoItem = async () => {
+    const response = await getTodoList(params);
+    setData(response);
+  };
+
+  // useEffect(() => {
+  //   const reFetchData = async () => {
+  //     await getTodoItem();
+  //   };
+  //   reFetchData();
+  // }, []);
+  useEffect(() => {
+    getTodoItem();
+  }, []);
+
+  console.log(data);
+
   return (
     <div>
-      <TodoHeader theTitle={theTitle} theId={params} />
+      <TodoHeader theTitle={theTitle} theId={params} reFetch={getTodoItem} />
       {data <= 0 ? (
         <div data-cy="todo-empty-state">
           <Image
@@ -30,8 +48,9 @@ const Detail = ({ theData, theTitle, params }) => {
         </div>
       ) : (
         <div className="flex flex-col gap-2 xmd:gap-[10px] pt-[28px] xmd:pt-12">
-          <TodoListCard />
-          <TodoListCard />
+          {data.map((item) => {
+            return <TodoListCard title={item.title} />;
+          })}
         </div>
       )}
     </div>

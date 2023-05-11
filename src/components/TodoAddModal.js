@@ -2,19 +2,15 @@ import Image from "next/image";
 import React, { useState } from "react";
 import close from "../assets/X.svg";
 import { HiChevronDown, HiChevronUp } from "react-icons/hi2";
-// import { IconName } from "react-icons/hi2";
+import items from "../data/Items";
+import { addTodo } from "../utils/api";
 
-const TodoAddModal = () => {
+const TodoAddModal = ({ onClose, idParams, onTodoAdded }) => {
   const [nameActivity, setNameActivity] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
-  const items = [
-    { id: 1, name: "Very High", color: "#ED4C5C", value: "very-high" },
-    { id: 2, name: "High", color: "#F8A541", value: "high" },
-    { id: 3, name: "Normal", color: "#00A790", value: "normal" },
-    { id: 4, name: "Low", color: "#428BC1", value: "low" },
-    { id: 5, name: "Very Low", color: "#8942C1", value: "very-low" },
-  ];
+  const [selectedItem, setSelectedItem] = useState(items[0]);
+
+  console.log(idParams);
 
   const handleToggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -25,11 +21,12 @@ const TodoAddModal = () => {
     setIsOpen(false);
   };
 
-  const circleStyle = {
-    width: "9px",
-    height: "9px",
-    borderRadius: "50%",
-    backgroundColor: "#FF0000",
+  const priorityValue = selectedItem.value;
+
+  const addTodoList = async () => {
+    await addTodo(idParams, nameActivity, priorityValue);
+    onTodoAdded();
+    onClose();
   };
 
   return (
@@ -42,7 +39,11 @@ const TodoAddModal = () => {
           >
             Tambah List Item
           </div>
-          <div data-cy="modal-add-close-button">
+          <div
+            data-cy="modal-add-close-button"
+            onClick={onClose}
+            className="cursor-pointer"
+          >
             <Image src={close} />
           </div>
         </div>
@@ -58,6 +59,7 @@ const TodoAddModal = () => {
             placeholder="Tambahkan nama Activity"
             className="w-full border border-[#e5e5e5] p-4 rounded-r-md"
             value={nameActivity}
+            onChange={(e) => setNameActivity(e.target.value)}
           />
         </div>
         <div className="pt-[23px] xmd:pt-[26px] border-b border-[#e5e5e5] px-[22px] xmd:px-[30px]">
@@ -98,7 +100,7 @@ const TodoAddModal = () => {
                     <li
                       key={item.id}
                       onClick={() => handleSelectItem(item)}
-                      className="flex items-center"
+                      className="flex items-center cursor-pointer"
                       data-cy="modal-add-priority-item"
                     >
                       <span
@@ -123,7 +125,8 @@ const TodoAddModal = () => {
             data-cy="modal-add-save-button"
             className={`${
               nameActivity ? "opacity-100" : "opacity-20"
-            } btn text-white -z-10`}
+            } btn text-white `}
+            onClick={addTodoList}
           >
             SIMPAN
           </button>
