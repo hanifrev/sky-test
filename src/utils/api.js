@@ -92,6 +92,17 @@ const addTodo = async (activity_group_id, title, priority) => {
   }
 };
 
+const deleteTodo = async (id) => {
+  try {
+    const res = await axios.delete(`${BASE_URL}/todo-items/${id}`);
+    const data = await res.data.data;
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
 export {
   getAllActivity,
   createActivity,
@@ -100,4 +111,5 @@ export {
   getOneActivity,
   getTodoList,
   addTodo,
+  deleteTodo,
 };

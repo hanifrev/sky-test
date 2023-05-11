@@ -49,7 +49,13 @@ const Detail = ({ theData, theTitle, params }) => {
       ) : (
         <div className="flex flex-col gap-2 xmd:gap-[10px] pt-[28px] xmd:pt-12">
           {data.map((item) => {
-            return <TodoListCard title={item.title} />;
+            return (
+              <TodoListCard
+                title={item.title}
+                todoid={item.id}
+                reFetch={getTodoItem}
+              />
+            );
           })}
         </div>
       )}

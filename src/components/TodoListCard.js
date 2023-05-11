@@ -1,14 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import pencil from "../assets/pencil.svg";
 import Image from "next/image";
 import { HiOutlineTrash } from "react-icons/hi";
+import { deleteTodo } from "../utils/api";
+import ModalTodo from "./ModalTodo";
 
-const TodoListCard = ({ title }) => {
+const TodoListCard = ({ title, todoid, reFetch }) => {
+  const [openModal, setOpenModal] = useState(false);
+
   const circleStyle = {
     width: "9px",
     height: "9px",
     borderRadius: "50%",
     backgroundColor: "#FF0000",
+  };
+
+  const openDeleteModal = () => {
+    setOpenModal(true);
+  };
+
+  const handleDelete = async () => {
+    await deleteTodo(todoid);
+    setOpenModal(false);
+    reFetch();
   };
 
   return (
@@ -36,7 +50,7 @@ const TodoListCard = ({ title }) => {
           className="font-medium text-sm xmd:text-lg pr-2 xmd:pr-4"
           data-cy="todo-item-title"
         >
-          {title}
+          {title} {todoid}
         </div>
         <div data-cy="todo-item-edit-button" className="flex items-center">
           <Image src={pencil} className="w-4 xmd:w-[24px] " />
@@ -45,10 +59,17 @@ const TodoListCard = ({ title }) => {
       <div
         data-cy="todo-item-delete-button"
         className="cursor-pointer -mr-3 xmd:mr-0"
-        // onClick={handleModal}
+        onClick={openDeleteModal}
       >
         <HiOutlineTrash className="text-[#888888] w-9 xmd:w-6 xmd:h-6 -mt-[1px] xmd:-mt-[3px]" />
       </div>
+      {openModal && (
+        <ModalTodo
+          data={title}
+          onClose={() => setOpenModal(false)}
+          onDeleteActivity={handleDelete}
+        />
+      )}
     </div>
   );
 };
