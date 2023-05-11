@@ -8,7 +8,7 @@ import Image from "next/image";
 
 const Detail = ({ theData, theTitle, params }) => {
   const [data, setData] = useState([1]);
-  // console.log(params);
+  console.log(theData);
   return (
     <div>
       <TodoHeader theTitle={theTitle} theId={params} />

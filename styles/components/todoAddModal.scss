@@ -43,4 +43,19 @@
     height: 52px;
     padding: 14px 17px;
   }
+
+  .dropdown-menu {
+    position: absolute;
+    width: 205px;
+    height: 52px;
+    margin-left: -17px;
+    margin-top: 103px;
+
+    li {
+      // width: 278px;
+      height: 52px;
+      background: #fff;
+      border: 1px solid #e5e5e5;
+    }
+  }
 }
