@@ -69,6 +69,7 @@ const ActivityList = () => {
           {data.map((item) => {
             return (
               <CardActivity
+                key={item.id}
                 data={item}
                 onDelete={onDeleteActivity}
                 toastDelete={theToast}
