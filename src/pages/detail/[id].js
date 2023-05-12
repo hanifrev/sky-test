@@ -7,16 +7,12 @@ import emptyDesktop from "../../assets/todo-empty-desktop.svg";
 import Image from "next/image";
 import TodoAddModal from "../../components/TodoAddModal";
 import DeletedToast from "../../components/DeletedToast";
-import { useRouter } from "next/router";
 
-const Detail = ({ theData, theTitle }) => {
+const Detail = ({ theData, theTitle, params }) => {
   const [data, setData] = useState(theData);
   const [selectedSortOption, setSelectedSortOption] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const [toast, setToast] = useState(false);
-
-  const router = useRouter();
-  const params = router.query.id;
 
   const getTodoItem = async () => {
     const response = await getTodoList(params);
@@ -122,9 +118,9 @@ export async function getServerSideProps(context) {
   const res = await getTodoList(id);
   const theData = res;
 
-  // const params = id;
+  const params = id;
 
   const title = await getOneActivity(id);
   const theTitle = title.title;
-  return { props: { theData, theTitle } };
+  return { props: { theData, theTitle, params } };
 }
