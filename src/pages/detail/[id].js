@@ -5,10 +5,12 @@ import TodoListCard from "../../components/TodoListCard";
 import emptyMobile from "../../assets/todo-empty-mobile.svg";
 import emptyDesktop from "../../assets/todo-empty-desktop.svg";
 import Image from "next/image";
+import TodoAddModal from "../../components/TodoAddModal";
 
 const Detail = ({ theData, theTitle, params }) => {
   const [data, setData] = useState(theData);
   const [selectedSortOption, setSelectedSortOption] = useState("");
+  const [openModal, setOpenModal] = useState(false);
 
   const getTodoItem = async () => {
     const response = await getTodoList(params);
@@ -34,6 +36,10 @@ const Detail = ({ theData, theTitle, params }) => {
     return 0;
   });
 
+  const handleModal = () => {
+    setOpenModal(true);
+  };
+
   return (
     <div>
       <TodoHeader
@@ -48,7 +54,7 @@ const Detail = ({ theData, theTitle, params }) => {
           <Image
             src={emptyMobile}
             className="block xmd:hidden mx-auto pt-[140px]"
-            // onClick={postActivity}
+            onClick={handleModal}
           />
           <div className="mx-auto block xmd:hidden text-base font-bold text-[#555555] pt-[35px] text-center">
             Buat List Item pertamamu
@@ -56,7 +62,7 @@ const Detail = ({ theData, theTitle, params }) => {
           <Image
             src={emptyDesktop}
             className="hidden xmd:block pt-[59px] mx-auto"
-            // onClick={handleOpenModal}
+            onClick={handleModal}
           />
         </div>
       ) : (
@@ -73,6 +79,13 @@ const Detail = ({ theData, theTitle, params }) => {
             );
           })}
         </div>
+      )}
+      {openModal && (
+        <TodoAddModal
+          idParams={params}
+          onClose={() => setOpenModal(false)}
+          onTodoAdded={getTodoItem}
+        />
       )}
     </div>
   );

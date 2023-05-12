@@ -19,8 +19,6 @@ const TodoEditModal = ({
   const [color, setColor] = useState();
   const [priorityValue, setPriorityValue] = useState();
 
-  //   const test = "1233";
-
   const handleToggleDropdown = () => {
     setIsOpen(!isOpen);
   };
