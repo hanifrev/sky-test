@@ -100,7 +100,7 @@ const TodoHeader = ({
         </div>
         <button
           className="add-btn  text-white"
-          data-cy="activity-add-button"
+          data-cy="todo-add-button"
           onClick={handleModal}
         >
           <FaPlus />
