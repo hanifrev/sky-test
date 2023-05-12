@@ -52,6 +52,7 @@ const Detail = ({ theData, theTitle, params }) => {
       {data <= 0 ? (
         <div data-cy="todo-empty-state">
           <Image
+            alt="img"
             src={emptyMobile}
             className="block xmd:hidden mx-auto pt-[140px]"
             onClick={handleModal}
@@ -60,6 +61,7 @@ const Detail = ({ theData, theTitle, params }) => {
             Buat List Item pertamamu
           </div>
           <Image
+            alt="img"
             src={emptyDesktop}
             className="hidden xmd:block pt-[59px] mx-auto"
             onClick={handleModal}
@@ -70,6 +72,7 @@ const Detail = ({ theData, theTitle, params }) => {
           {sortedData.map((item) => {
             return (
               <TodoListCard
+                key={item.id}
                 title={item.title}
                 todoid={item.id}
                 priority={item.priority}

@@ -7,7 +7,7 @@ const Modal = ({ onClose, onDeleteActivity, data }) => {
     <div id="modal-overlay" className="bg-orange-600">
       <div id="modal" className="" data-cy="modal-delete">
         <div data-cy="modal-delete-icon" className="justify-center flex pt-10">
-          <Image src={warningIconM} />
+          <Image alt="img" src={warningIconM} />
         </div>
         <div
           data-cy="modal-delete-title"

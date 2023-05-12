@@ -42,7 +42,7 @@ const TodoAddModal = ({ onClose, idParams, onTodoAdded }) => {
             onClick={onClose}
             className="cursor-pointer"
           >
-            <Image src={close} />
+            <Image alt="img" src={close} />
           </div>
         </div>
         <div className="flex flex-col px-[22px] xmd:px-[30px] pt-[23px]">

@@ -54,7 +54,7 @@ const TodoEditModal = ({
       setColor("#8942C1");
       setPriorityValue("very-low");
     }
-  }, []);
+  }, [thePriority]);
 
   const addTodoList = async () => {
     await updateTodoTitlePriority(idParams, nameActivity, priorityValue);
@@ -77,7 +77,7 @@ const TodoEditModal = ({
             onClick={onClose}
             className="cursor-pointer"
           >
-            <Image src={close} />
+            <Image alt="img" src={close} />
           </div>
         </div>
         <div className="flex flex-col px-[22px] xmd:px-[30px] pt-[23px]">

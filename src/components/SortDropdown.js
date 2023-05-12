@@ -22,7 +22,7 @@ const SortDropdown = ({ selectedOption, onOptionSelect, onClose }) => {
           data-cy="sort-selection-latest"
         >
           <span className="pr-3 xmd:pr-[15px]">
-            <Image src={latestLogo} data-cy="sort-selection-icon" />
+            <Image alt="img" src={latestLogo} data-cy="sort-selection-icon" />
           </span>
 
           <span className="item-name" data-cy="sort-selection-title">
@@ -30,6 +30,7 @@ const SortDropdown = ({ selectedOption, onOptionSelect, onClose }) => {
           </span>
           {selectedOption == "latest" && (
             <Image
+              alt="img"
               className="checked"
               src={checked}
               data-cy="sort-selection-selected"
@@ -42,7 +43,7 @@ const SortDropdown = ({ selectedOption, onOptionSelect, onClose }) => {
           data-cy="sort-selection-oldest"
         >
           <span className="pr-3 xmd:pr-[15px]">
-            <Image src={oldest} data-cy="sort-selection-icon" />
+            <Image alt="img" src={oldest} data-cy="sort-selection-icon" />
           </span>
 
           <span className="item-name" data-cy="sort-selection-title">
@@ -50,6 +51,7 @@ const SortDropdown = ({ selectedOption, onOptionSelect, onClose }) => {
           </span>
           {selectedOption == "oldest" && (
             <Image
+              alt="img"
               className="checked"
               src={checked}
               data-cy="sort-selection-selected"
@@ -62,7 +64,7 @@ const SortDropdown = ({ selectedOption, onOptionSelect, onClose }) => {
           data-cy="sort-selection-az"
         >
           <span className="pr-3 xmd:pr-[15px]">
-            <Image src={AZ} data-cy="sort-selection-icon" />
+            <Image alt="img" src={AZ} data-cy="sort-selection-icon" />
           </span>
 
           <span className="item-name" data-cy="sort-selection-title">
@@ -70,6 +72,7 @@ const SortDropdown = ({ selectedOption, onOptionSelect, onClose }) => {
           </span>
           {selectedOption == "a-z" && (
             <Image
+              alt="img"
               className="checked"
               src={checked}
               data-cy="sort-selection-selected"
@@ -82,7 +85,7 @@ const SortDropdown = ({ selectedOption, onOptionSelect, onClose }) => {
           data-cy="sort-selection-za"
         >
           <span className="pr-3 xmd:pr-[15px]">
-            <Image src={ZA} data-cy="sort-selection-icon" />
+            <Image alt="img" src={ZA} data-cy="sort-selection-icon" />
           </span>
 
           <span className="item-name" data-cy="sort-selection-title">
@@ -90,6 +93,7 @@ const SortDropdown = ({ selectedOption, onOptionSelect, onClose }) => {
           </span>
           {selectedOption == "z-a" && (
             <Image
+              alt="img"
               className="checked"
               src={checked}
               data-cy="sort-selection-selected"
@@ -102,7 +106,7 @@ const SortDropdown = ({ selectedOption, onOptionSelect, onClose }) => {
           data-cy="sort-selection-not-finished"
         >
           <span className="pr-3 xmd:pr-[15px]">
-            <Image src={notFinish} data-cy="sort-selection-icon" />
+            <Image alt="img" src={notFinish} data-cy="sort-selection-icon" />
           </span>
 
           <span className="item-name" data-cy="sort-selection-title">
@@ -110,6 +114,7 @@ const SortDropdown = ({ selectedOption, onOptionSelect, onClose }) => {
           </span>
           {selectedOption == "not-finished" && (
             <Image
+              alt="img"
               className="checked"
               src={checked}
               data-cy="sort-selection-selected"

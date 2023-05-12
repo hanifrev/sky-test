@@ -48,7 +48,7 @@ const TodoListCard = ({ title, todoid, priority, reFetch, is_active }) => {
     } else {
       setPriorityColor("#8942C1");
     }
-  }, [reFetch]);
+  }, [reFetch, priority]);
 
   const handleEdit = () => {
     setModalEdit(true);
@@ -89,7 +89,7 @@ const TodoListCard = ({ title, todoid, priority, reFetch, is_active }) => {
           className="flex items-center cursor-pointer"
           onClick={handleEdit}
         >
-          <Image src={pencil} className="w-4 xmd:w-[24px] " />
+          <Image alt="img" src={pencil} className="w-4 xmd:w-[24px] " />
         </div>
       </div>
       <div

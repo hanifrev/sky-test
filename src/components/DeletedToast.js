@@ -10,7 +10,7 @@ const DeletedToast = ({ closeToast }) => {
         data-cy="modal-information"
         className="flex pl-[27px]"
       >
-        <Image src={icon} data-cy="modal-information-icon" />
+        <Image alt="img" src={icon} data-cy="modal-information-icon" />
         <div
           className="flex items-center pl-[10px]"
           data-cy="modal-information-title"

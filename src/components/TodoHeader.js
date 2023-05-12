@@ -89,14 +89,14 @@ const TodoHeader = ({
             onClick={handleTitleClick}
             className="cursor-pointer xmd:flex xmd:pl-6"
           >
-            <Image src={pencil} className="xmd:w-[24px]" />
+            <Image alt="img" src={pencil} className="xmd:w-[24px]" />
           </div>
         </div>
       </div>
       <div className="flex justify-end pt-8 gap-2 xmd:pt-0 xmd:gap-[18px]">
         {/* if data available, sort = true */}
         <div data-cy="todo-sort-button" onClick={handleSortModal}>
-          <Image src={sortBtn} className="xmd:w-[54px]" />
+          <Image alt="img" src={sortBtn} className="xmd:w-[54px]" />
         </div>
         <button
           className="add-btn  text-white"
