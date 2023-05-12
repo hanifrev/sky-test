@@ -49,6 +49,7 @@ const ActivityList = () => {
       {data <= 0 ? (
         <div data-cy="activity-empty-state">
           <Image
+            alt="img"
             src={emptyMobile}
             className="block xmd:hidden mx-auto pt-[140px]"
             onClick={postActivity}
@@ -57,6 +58,7 @@ const ActivityList = () => {
             Buat activity pertamamu
           </div>
           <Image
+            alt="img"
             src={emptyDesktop}
             className="hidden xmd:block mx-auto pt-[59px]"
             onClick={postActivity}
