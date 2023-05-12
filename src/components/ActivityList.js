@@ -44,7 +44,7 @@ const ActivityList = () => {
   }, [toast]);
 
   return (
-    <div>
+    <div data-cy="activity-empty-state">
       <ActivityHeader addActivity={postActivity} />
       {data <= 0 ? (
         <div>
@@ -53,7 +53,6 @@ const ActivityList = () => {
             src={emptyMobile}
             className="block xmd:hidden mx-auto pt-[140px]"
             onClick={postActivity}
-            data-cy="activity-empty-state"
           />
           <div className="mx-auto block xmd:hidden text-base font-bold text-[#555555] pt-[35px] text-center">
             Buat activity pertamamu
@@ -63,7 +62,6 @@ const ActivityList = () => {
             src={emptyDesktop}
             className="hidden xmd:block mx-auto pt-[59px]"
             onClick={postActivity}
-            data-cy="activity-empty-state"
           />
         </div>
       ) : (

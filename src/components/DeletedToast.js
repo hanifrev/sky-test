@@ -4,12 +4,12 @@ import Image from "next/image";
 
 const DeletedToast = ({ closeToast }) => {
   return (
-    <div id="toastOverlay" onClick={closeToast}>
-      <div
-        id="deletedToast"
-        data-cy="modal-information"
-        className="flex pl-[27px]"
-      >
+    <div
+      id="toastOverlay modal"
+      onClick={closeToast}
+      data-cy="modal-information"
+    >
+      <div id="deletedToast" className="flex pl-[27px]">
         <Image alt="img" src={icon} data-cy="modal-information-icon" />
         <div
           className="flex items-center pl-[10px]"
