@@ -9,7 +9,14 @@ import { updateActivity } from "../utils/api";
 import TodoAddModal from "./TodoAddModal";
 import SortDropdown from "./SortDropdown";
 
-const TodoHeader = ({ theData, theTitle, theId, reFetch }) => {
+const TodoHeader = ({
+  theData,
+  theTitle,
+  theId,
+  reFetch,
+  onOptionSelect,
+  selectedOption,
+}) => {
   const [isEditing, setIsEditing] = useState(false);
   const [value, setValue] = useState(theTitle);
   const [openModal, setOpenModal] = useState(false);
@@ -100,7 +107,12 @@ const TodoHeader = ({ theData, theTitle, theId, reFetch }) => {
           <span className="text-xs xmd:text-lg">Tambah</span>
         </button>
       </div>
-      {openSort && <SortDropdown />}
+      {openSort && (
+        <SortDropdown
+          onOptionSelect={onOptionSelect}
+          selectedOption={selectedOption}
+        />
+      )}
       {openModal && (
         <TodoAddModal
           idParams={theId}

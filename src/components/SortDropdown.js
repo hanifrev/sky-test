@@ -3,20 +3,26 @@ import React from "react";
 import AZ from "../assets/sort/AZ.svg";
 import ZA from "../assets/sort/ZA.svg";
 import notFinish from "../assets/sort/belumSelesai.svg";
-import latest from "../assets/sort/terbaru.svg";
+import latestLogo from "../assets/sort/terbaru.svg";
 import oldest from "../assets/sort/terlama.svg";
 
-const SortDropdown = () => {
+const SortDropdown = ({ selectedOption, onOptionSelect }) => {
+  const handleOptionClick = (option) => {
+    onOptionSelect(option);
+  };
+
+  //   console.log(selectedOption);
+
   return (
     <div id="sort-dropdown">
       <ul>
         <li
-          //   onClick={() => handleSelectItem(item)}
+          onClick={() => handleOptionClick("latest")}
           className="flex items-center cursor-pointer"
           data-cy="sort-selection-latest"
         >
           <span className="pr-3 xmd:pr-[15px]">
-            <Image src={latest} data-cy="sort-selection-icon" />
+            <Image src={latestLogo} data-cy="sort-selection-icon" />
           </span>
 
           <span className="item-name" data-cy="sort-selection-title">
@@ -24,7 +30,7 @@ const SortDropdown = () => {
           </span>
         </li>
         <li
-          //   onClick={() => handleSelectItem(item)}
+          onClick={() => handleOptionClick("oldest")}
           className="flex items-center cursor-pointer"
           data-cy="sort-selection-oldest"
         >
@@ -37,7 +43,7 @@ const SortDropdown = () => {
           </span>
         </li>
         <li
-          //   onClick={() => handleSelectItem(item)}
+          onClick={() => handleOptionClick("a-z")}
           className="flex items-center cursor-pointer"
           data-cy="sort-selection-az"
         >
@@ -50,7 +56,7 @@ const SortDropdown = () => {
           </span>
         </li>
         <li
-          //   onClick={() => handleSelectItem(item)}
+          onClick={() => handleOptionClick("z-a")}
           className="flex items-center cursor-pointer"
           data-cy="sort-selection-za"
         >
@@ -63,7 +69,7 @@ const SortDropdown = () => {
           </span>
         </li>
         <li
-          //   onClick={() => handleSelectItem(item)}
+          onClick={() => handleOptionClick("not-finished")}
           className="flex items-center cursor-pointer"
           data-cy="sort-selection-not-finished"
         >

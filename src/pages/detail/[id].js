@@ -8,27 +8,43 @@ import Image from "next/image";
 
 const Detail = ({ theData, theTitle, params }) => {
   const [data, setData] = useState(theData);
+  const [selectedSortOption, setSelectedSortOption] = useState("");
 
   const getTodoItem = async () => {
     const response = await getTodoList(params);
     setData(response);
   };
 
-  // useEffect(() => {
-  //   const reFetchData = async () => {
-  //     await getTodoItem();
-  //   };
-  //   reFetchData();
-  // }, []);
   useEffect(() => {
     getTodoItem();
   }, []);
 
   console.log(data);
 
+  const sortedData = [...data].sort((a, b) => {
+    if (selectedSortOption === "latest") {
+      return b.id - a.id;
+    } else if (selectedSortOption === "oldest") {
+      return a.id - b.id;
+    } else if (selectedSortOption == "a-z") {
+      return a.title.localeCompare(b.title);
+    } else if (selectedSortOption == "z-a") {
+      return b.title.localeCompare(a.title);
+    } else if (selectedSortOption == "not-finished") {
+      return b.is_active - a.is_active;
+    }
+    return 0;
+  });
+
   return (
     <div>
-      <TodoHeader theTitle={theTitle} theId={params} reFetch={getTodoItem} />
+      <TodoHeader
+        theTitle={theTitle}
+        theId={params}
+        reFetch={getTodoItem}
+        onOptionSelect={setSelectedSortOption}
+        selectedOption={selectedSortOption}
+      />
       {data <= 0 ? (
         <div data-cy="todo-empty-state">
           <Image
@@ -47,7 +63,7 @@ const Detail = ({ theData, theTitle, params }) => {
         </div>
       ) : (
         <div className="flex flex-col gap-2 xmd:gap-[10px] pt-[28px] xmd:pt-12">
-          {data.map((item) => {
+          {sortedData.map((item) => {
             return (
               <TodoListCard
                 title={item.title}
