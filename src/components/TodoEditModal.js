@@ -63,7 +63,7 @@ const TodoEditModal = ({
   };
 
   return (
-    <div id="add-modal-overlay">
+    <div id="">
       <div id="add-modal" data-cy="modal-add" className=" pt-[19px] xmd:pt-6">
         <div className="flex justify-between border-b border-[#e5e5e5] pb-[17px] px-[22px] xmd:px-[30px]">
           <div
