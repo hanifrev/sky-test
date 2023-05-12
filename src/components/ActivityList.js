@@ -30,8 +30,6 @@ const ActivityList = () => {
     getActivity();
   };
 
-  console.log(data);
-
   const theToast = () => {
     setToast(true);
   };

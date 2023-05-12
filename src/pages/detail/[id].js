@@ -19,8 +19,6 @@ const Detail = ({ theData, theTitle, params }) => {
     getTodoItem();
   }, []);
 
-  console.log(data);
-
   const sortedData = [...data].sort((a, b) => {
     if (selectedSortOption === "latest") {
       return b.id - a.id;

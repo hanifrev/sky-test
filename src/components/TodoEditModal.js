@@ -19,9 +19,6 @@ const TodoEditModal = ({
   const [color, setColor] = useState();
   const [priorityValue, setPriorityValue] = useState();
 
-  console.log(idParams);
-  console.log(nameActivity);
-
   //   const test = "1233";
 
   const handleToggleDropdown = () => {
@@ -35,7 +32,7 @@ const TodoEditModal = ({
     setIsOpen(false);
   };
 
-  console.log(priorityValue);
+  priorityValue;
 
   useEffect(() => {
     if (thePriority == "very-high") {

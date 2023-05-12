@@ -5,13 +5,13 @@ import ZA from "../assets/sort/ZA.svg";
 import notFinish from "../assets/sort/belumSelesai.svg";
 import latestLogo from "../assets/sort/terbaru.svg";
 import oldest from "../assets/sort/terlama.svg";
+import checked from "../assets/checked-mark.svg";
 
-const SortDropdown = ({ selectedOption, onOptionSelect }) => {
+const SortDropdown = ({ selectedOption, onOptionSelect, onClose }) => {
   const handleOptionClick = (option) => {
     onOptionSelect(option);
+    onClose();
   };
-
-  //   console.log(selectedOption);
 
   return (
     <div id="sort-dropdown">
@@ -28,6 +28,13 @@ const SortDropdown = ({ selectedOption, onOptionSelect }) => {
           <span className="item-name" data-cy="sort-selection-title">
             Terbaru
           </span>
+          {selectedOption == "latest" && (
+            <Image
+              className="checked"
+              src={checked}
+              data-cy="sort-selection-selected"
+            />
+          )}
         </li>
         <li
           onClick={() => handleOptionClick("oldest")}
@@ -41,6 +48,13 @@ const SortDropdown = ({ selectedOption, onOptionSelect }) => {
           <span className="item-name" data-cy="sort-selection-title">
             Terlama
           </span>
+          {selectedOption == "oldest" && (
+            <Image
+              className="checked"
+              src={checked}
+              data-cy="sort-selection-selected"
+            />
+          )}
         </li>
         <li
           onClick={() => handleOptionClick("a-z")}
@@ -54,6 +68,13 @@ const SortDropdown = ({ selectedOption, onOptionSelect }) => {
           <span className="item-name" data-cy="sort-selection-title">
             A-Z
           </span>
+          {selectedOption == "a-z" && (
+            <Image
+              className="checked"
+              src={checked}
+              data-cy="sort-selection-selected"
+            />
+          )}
         </li>
         <li
           onClick={() => handleOptionClick("z-a")}
@@ -67,6 +88,13 @@ const SortDropdown = ({ selectedOption, onOptionSelect }) => {
           <span className="item-name" data-cy="sort-selection-title">
             Z-A
           </span>
+          {selectedOption == "z-a" && (
+            <Image
+              className="checked"
+              src={checked}
+              data-cy="sort-selection-selected"
+            />
+          )}
         </li>
         <li
           onClick={() => handleOptionClick("not-finished")}
@@ -80,6 +108,13 @@ const SortDropdown = ({ selectedOption, onOptionSelect }) => {
           <span className="item-name" data-cy="sort-selection-title">
             Belum Selesai
           </span>
+          {selectedOption == "not-finished" && (
+            <Image
+              className="checked"
+              src={checked}
+              data-cy="sort-selection-selected"
+            />
+          )}
         </li>
       </ul>
     </div>

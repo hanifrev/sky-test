@@ -111,6 +111,7 @@ const TodoHeader = ({
         <SortDropdown
           onOptionSelect={onOptionSelect}
           selectedOption={selectedOption}
+          onClose={() => setOpenSort(false)}
         />
       )}
       {openModal && (

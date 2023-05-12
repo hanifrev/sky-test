@@ -10,8 +10,6 @@ const TodoAddModal = ({ onClose, idParams, onTodoAdded }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(items[0]);
 
-  console.log(idParams);
-
   const handleToggleDropdown = () => {
     setIsOpen(!isOpen);
   };

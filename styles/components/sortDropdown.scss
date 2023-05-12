@@ -31,4 +31,11 @@
       }
     }
   }
+
+  .checked {
+    display: flex;
+    position: absolute;
+    right: 17px;
+    align-items: center;
+  }
 }
