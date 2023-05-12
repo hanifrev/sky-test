@@ -9,7 +9,6 @@ const getAllActivity = async () => {
     const data = await res.data.data;
     return data;
   } catch (error) {
-    // throw new Error(error.message);
     console.error(error);
     return null;
   }

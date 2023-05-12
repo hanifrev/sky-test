@@ -12,7 +12,7 @@ const Modal = ({ onClose, onDeleteActivity, data }) => {
   };
 
   return (
-    <div>
+    <div className="-mt-[8px] xmd:-mt-[70px]">
       <div style={outside} onClick={onClose}></div>
       <div id="modal" className="" data-cy="modal-delete">
         <div data-cy="modal-delete-icon" className="justify-center flex pt-10">

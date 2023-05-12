@@ -108,11 +108,7 @@ const TodoEditModal = ({
               onClick={handleToggleDropdown}
               data-cy="modal-add-priority-dropdown"
             >
-              <div
-                className="dropdown-header flex justify-between w-full"
-
-                // style={{ backgroundColor: selectedItem?.color }}
-              >
+              <div className="dropdown-header flex justify-between w-full">
                 <div className="dropdown-header-text flex items-center -ml-[13px]">
                   <div
                     className={`mx-[14px] flex items-center w-[9px] h-[9px]  rounded-[50%] `}
@@ -136,10 +132,7 @@ const TodoEditModal = ({
                       className="flex items-center cursor-pointer"
                       data-cy="modal-add-priority-item"
                     >
-                      <span
-                        className="color-circle"
-                        // style={{ backgroundColor: item.color }}
-                      ></span>
+                      <span className="color-circle"></span>
                       <div
                         className={`mx-[14px] flex items-center w-[9px] h-[9px] rounded-[50%] `}
                         data-cy="todo-item-priority-indicator"
