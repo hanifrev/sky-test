@@ -78,12 +78,7 @@ const ActivityList = () => {
           })}
         </div>
       )}
-      {toast && (
-        <DeletedToast
-          data-cy="modal-information"
-          closeToast={() => setToast(false)}
-        />
-      )}
+      {toast && <DeletedToast closeToast={() => setToast(false)} />}
     </div>
   );
 };

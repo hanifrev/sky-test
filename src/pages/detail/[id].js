@@ -6,11 +6,13 @@ import emptyMobile from "../../assets/todo-empty-mobile.svg";
 import emptyDesktop from "../../assets/todo-empty-desktop.svg";
 import Image from "next/image";
 import TodoAddModal from "../../components/TodoAddModal";
+import DeletedToast from "../../components/DeletedToast";
 
 const Detail = ({ theData, theTitle, params }) => {
   const [data, setData] = useState(theData);
   const [selectedSortOption, setSelectedSortOption] = useState("");
   const [openModal, setOpenModal] = useState(false);
+  const [toast, setToast] = useState(false);
 
   const getTodoItem = async () => {
     const response = await getTodoList(params);
@@ -39,6 +41,19 @@ const Detail = ({ theData, theTitle, params }) => {
   const handleModal = () => {
     setOpenModal(true);
   };
+
+  const theToast = () => {
+    setToast(true);
+  };
+
+  useEffect(() => {
+    if (toast) {
+      const timeoutId = setTimeout(() => {
+        setToast(false);
+      }, 4000);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [toast]);
 
   return (
     <div>
@@ -78,6 +93,7 @@ const Detail = ({ theData, theTitle, params }) => {
                 priority={item.priority}
                 reFetch={getTodoItem}
                 is_active={item.is_active}
+                toastDelete={theToast}
               />
             );
           })}
@@ -90,6 +106,7 @@ const Detail = ({ theData, theTitle, params }) => {
           onTodoAdded={getTodoItem}
         />
       )}
+      {toast && <DeletedToast closeToast={() => setToast(false)} />}
     </div>
   );
 };

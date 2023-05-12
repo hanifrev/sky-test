@@ -4,7 +4,7 @@ import warningIconM from "../assets/modal-delete-icon.svg";
 
 const ModalTodo = ({ onClose, onDeleteActivity, data }) => {
   return (
-    <div id="modal-overlay" className="bg-orange-600">
+    <div id="">
       <div id="modal" className="" data-cy="modal-delete">
         <div data-cy="modal-delete-icon" className="justify-center flex pt-10">
           <Image alt="img" src={warningIconM} />

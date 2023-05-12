@@ -6,8 +6,16 @@ import { deleteTodo, updateTodoChecked } from "../utils/api";
 import ModalTodo from "./ModalTodo";
 import TodoAddModal from "./TodoAddModal";
 import TodoEditModal from "./TodoEditModal";
+import DeletedToast from "./DeletedToast";
 
-const TodoListCard = ({ title, todoid, priority, reFetch, is_active }) => {
+const TodoListCard = ({
+  title,
+  todoid,
+  priority,
+  reFetch,
+  is_active,
+  toastDelete,
+}) => {
   const [openModal, setOpenModal] = useState(false);
   const [modalEdit, setModalEdit] = useState(false);
   const [priorityColor, setPriorityColor] = useState("");
@@ -34,6 +42,7 @@ const TodoListCard = ({ title, todoid, priority, reFetch, is_active }) => {
     await deleteTodo(todoid);
     setOpenModal(false);
     reFetch();
+    toastDelete(true);
   };
 
   useEffect(() => {
