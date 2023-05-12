@@ -43,13 +43,11 @@ const CardActivity = ({ data, onDelete, toastDelete }) => {
               year: "numeric",
             })}
           </div>
-          <div
-            data-cy="activity-item-delete-button"
-            className="w-5 h-0 cursor-pointer"
-            //   onClick={() => onDelete(data.id)}
-            onClick={handleModal}
-          >
-            <HiOutlineTrash className="text-[#888888] w-9 xmd:w-6 xmd:h-6 -mt-[1px] xmd:-mt-[3px]" />
+          <div className="w-5 h-0 cursor-pointer" onClick={handleModal}>
+            <HiOutlineTrash
+              data-cy="activity-item-delete-button"
+              className="text-[#888888] w-9 xmd:w-6 xmd:h-6 -mt-[1px] xmd:-mt-[3px]"
+            />
           </div>
         </div>
       </div>

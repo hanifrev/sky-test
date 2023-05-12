@@ -19,7 +19,7 @@ const SortDropdown = ({ selectedOption, onOptionSelect, onClose }) => {
         <li
           onClick={() => handleOptionClick("latest")}
           className="flex items-center cursor-pointer"
-          data-cy="sort-selection-latest"
+          data-cy="sort-selection"
         >
           <span className="pr-3 xmd:pr-[15px]">
             <Image alt="img" src={latestLogo} data-cy="sort-selection-icon" />
@@ -40,7 +40,7 @@ const SortDropdown = ({ selectedOption, onOptionSelect, onClose }) => {
         <li
           onClick={() => handleOptionClick("oldest")}
           className="flex items-center cursor-pointer"
-          data-cy="sort-selection-oldest"
+          data-cy="sort-selection"
         >
           <span className="pr-3 xmd:pr-[15px]">
             <Image alt="img" src={oldest} data-cy="sort-selection-icon" />
@@ -61,7 +61,7 @@ const SortDropdown = ({ selectedOption, onOptionSelect, onClose }) => {
         <li
           onClick={() => handleOptionClick("a-z")}
           className="flex items-center cursor-pointer"
-          data-cy="sort-selection-az"
+          data-cy="sort-selection"
         >
           <span className="pr-3 xmd:pr-[15px]">
             <Image alt="img" src={AZ} data-cy="sort-selection-icon" />
@@ -82,7 +82,7 @@ const SortDropdown = ({ selectedOption, onOptionSelect, onClose }) => {
         <li
           onClick={() => handleOptionClick("z-a")}
           className="flex items-center cursor-pointer"
-          data-cy="sort-selection-za"
+          data-cy="sort-selection"
         >
           <span className="pr-3 xmd:pr-[15px]">
             <Image alt="img" src={ZA} data-cy="sort-selection-icon" />
@@ -103,7 +103,7 @@ const SortDropdown = ({ selectedOption, onOptionSelect, onClose }) => {
         <li
           onClick={() => handleOptionClick("not-finished")}
           className="flex items-center cursor-pointer"
-          data-cy="sort-selection-not-finished"
+          data-cy="sort-selection"
         >
           <span className="pr-3 xmd:pr-[15px]">
             <Image alt="img" src={notFinish} data-cy="sort-selection-icon" />
