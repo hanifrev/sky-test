@@ -160,6 +160,7 @@ const TodoEditModal = ({
               nameActivity ? "opacity-100" : "opacity-20"
             } btn text-white `}
             onClick={addTodoList}
+            disabled={nameActivity <= 0}
           >
             SIMPAN
           </button>
