@@ -1,10 +1,19 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import warningIconM from "../assets/modal-delete-icon.svg";
 
 const Modal = ({ onClose, onDeleteActivity, data }) => {
+  const outside = {
+    width: "100%",
+    height: "100vh",
+    position: "absolute",
+    top: 0,
+    right: 0,
+  };
+
   return (
     <div>
+      <div style={outside} onClick={onClose}></div>
       <div id="modal" className="" data-cy="modal-delete">
         <div data-cy="modal-delete-icon" className="justify-center flex pt-10">
           <Image alt="img" src={warningIconM} />
