@@ -22,7 +22,7 @@ const TodoListCard = ({
   const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckboxChange = async () => {
-    const updatedValue = isChecked ? 0 : 1;
+    const updatedValue = isChecked ? 1 : 0;
     await updateTodoChecked(todoid, updatedValue);
     reFetch();
     setIsChecked((prevState) => !prevState);
