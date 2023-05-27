@@ -26,10 +26,10 @@ const TodoHeader = ({
     setIsEditing(true);
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = async (e) => {
     const updatedValue = e.target.value;
     setValue(updatedValue);
-    updateActivity(updatedValue, theId);
+    await updateActivity(updatedValue, theId);
   };
 
   const handleInputBlur = () => {
