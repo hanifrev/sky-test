@@ -26,14 +26,14 @@ const TodoHeader = ({
     setIsEditing(true);
   };
 
-  const handleInputChange = async (e) => {
+  const handleInputChange = (e) => {
     const updatedValue = e.target.value;
     setValue(updatedValue);
-    await updateActivity(updatedValue, theId);
   };
 
   const handleInputBlur = () => {
     setIsEditing(false);
+    updateActivity(value, theId);
   };
 
   const handleModal = () => {
