@@ -9,7 +9,7 @@ import TodoAddModal from "../../components/TodoAddModal";
 import DeletedToast from "../../components/DeletedToast";
 import { useRouter } from "next/router";
 
-const Detail = ({ theData, params }) => {
+const Detail = ({ theData, theTitle, params }) => {
   const [data, setData] = useState(theData);
   const [selectedSortOption, setSelectedSortOption] = useState("");
   const [openModal, setOpenModal] = useState(false);
@@ -32,7 +32,7 @@ const Detail = ({ theData, params }) => {
     fetchData();
   }, []);
 
-  console.log("new", title);
+  // console.log("new", title);
 
   const getTodoItem = async () => {
     const response = await getTodoList(router.query.id);
@@ -78,7 +78,7 @@ const Detail = ({ theData, params }) => {
   return (
     <div>
       <TodoHeader
-        theTitle={title}
+        theTitle={theTitle}
         theId={params}
         reFetch={getTodoItem}
         onOptionSelect={setSelectedSortOption}
@@ -140,8 +140,8 @@ export async function getServerSideProps(context) {
 
   const params = id;
 
-  // const title = await getOneActivity(id);
-  // const theTitle = title.title;
-  console.log(params);
-  return { props: { theData, params } };
+  const title = await getOneActivity(id);
+  const theTitle = title.title;
+  // console.log(params);
+  return { props: { theData, theTitle, params } };
 }
