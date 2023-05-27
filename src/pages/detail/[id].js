@@ -7,15 +7,35 @@ import emptyDesktop from "../../assets/todo-empty-desktop.svg";
 import Image from "next/image";
 import TodoAddModal from "../../components/TodoAddModal";
 import DeletedToast from "../../components/DeletedToast";
+import { useRouter } from "next/router";
 
-const Detail = ({ theData, theTitle, params }) => {
+const Detail = ({ theData, params }) => {
   const [data, setData] = useState(theData);
   const [selectedSortOption, setSelectedSortOption] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const [toast, setToast] = useState(false);
+  const [title, setTitle] = useState("");
+
+  const router = useRouter();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await getOneActivity(router.query.id);
+        const title = response.title;
+        setTitle(title);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  console.log("new", title);
 
   const getTodoItem = async () => {
-    const response = await getTodoList(params);
+    const response = await getTodoList(router.query.id);
     setData(response);
   };
 
@@ -58,7 +78,7 @@ const Detail = ({ theData, theTitle, params }) => {
   return (
     <div>
       <TodoHeader
-        theTitle={theTitle}
+        theTitle={title}
         theId={params}
         reFetch={getTodoItem}
         onOptionSelect={setSelectedSortOption}
@@ -120,7 +140,8 @@ export async function getServerSideProps(context) {
 
   const params = id;
 
-  const title = await getOneActivity(id);
-  const theTitle = title.title;
-  return { props: { theData, theTitle, params } };
+  // const title = await getOneActivity(id);
+  // const theTitle = title.title;
+  console.log(params);
+  return { props: { theData, params } };
 }
