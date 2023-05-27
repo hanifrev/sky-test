@@ -14,7 +14,7 @@ const Detail = ({ theData, theTitle, params }) => {
   const [selectedSortOption, setSelectedSortOption] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const [toast, setToast] = useState(false);
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState(theTitle);
 
   const router = useRouter();
 
@@ -22,7 +22,7 @@ const Detail = ({ theData, theTitle, params }) => {
     const fetchData = async () => {
       try {
         const response = await getOneActivity(router.query.id);
-        const title = response.title;
+        const title = await response.title;
         setTitle(title);
       } catch (error) {
         console.log(error);
@@ -78,7 +78,7 @@ const Detail = ({ theData, theTitle, params }) => {
   return (
     <div>
       <TodoHeader
-        theTitle={theTitle}
+        theTitle={title}
         theId={params}
         reFetch={getTodoItem}
         onOptionSelect={setSelectedSortOption}
