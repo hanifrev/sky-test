@@ -3,7 +3,7 @@ import { HiOutlineTrash } from "react-icons/hi";
 import Modal from "./Modal";
 import Link from "next/link";
 
-const CardActivity = ({ data, onDelete, toastDelete }) => {
+const CardActivity = ({ data, theId, onDelete, toastDelete }) => {
   const [openModal, setOpenModal] = useState(false);
 
   const handleModal = () => {
@@ -23,7 +23,7 @@ const CardActivity = ({ data, onDelete, toastDelete }) => {
       data-cy="activity-item"
       key={data.id}
     >
-      <Link href={`/detail/${data.id}`}>
+      <Link href={`/detail/${theId}`}>
         <div
           className="font-bold text-sm xmd:text-lg h-24"
           data-cy="activity-item-title"

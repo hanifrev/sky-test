@@ -70,6 +70,7 @@ const ActivityList = () => {
             return (
               <CardActivity
                 key={item.id}
+                theId={item.id}
                 data={item}
                 onDelete={onDeleteActivity}
                 toastDelete={theToast}
